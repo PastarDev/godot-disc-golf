@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://mrlaexqa04jm"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jsssl"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=53059265]
+transform = Transform3D(1.1892015, 0, 0, 0, 1.0498031, 0, 0, 0, 2.697831, 0, 0, 0)
+mesh = SubResource("PlaneMesh_jsssl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=993750380]
