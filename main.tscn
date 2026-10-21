@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpfbkytjwr41u" path="res://player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://mrlaexqa04jm" path="res://map1.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://da5gnc18ghvxf" path="res://sample_disc.tscn" id="3_h2yge"]
 
 [node name="main" type="Node3D" unique_id=1902930073]
 
@@ -13,3 +14,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4, -0.09277654, 0, 0.7650382)
 
 [node name="MainSun" type="DirectionalLight3D" parent="." unique_id=69877582]
 transform = Transform3D(1, 0, 0, 0, 0.5210079, 0.85355186, 0, -0.85355186, 0.5210079, 0, 37.1981, 9.467678)
+
+[node name="SampleDisc" parent="." unique_id=1724252949 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -131.64722)
