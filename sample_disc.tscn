@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://da5gnc18ghvxf"]
+
+[node name="SampleDisc" type="MeshInstance3D" unique_id=1724252949]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=391625750]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2126489507]
