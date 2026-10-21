@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://mrlaexqa04jm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cf5bg"]
+albedo_color = Color(0.15305373, 0.3560721, 1.4439226e-07, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jsssl"]
+material = SubResource("StandardMaterial3D_cf5bg")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsssl"]
+size = Vector3(1, 0.01, 2)
+
+[node name="ground" type="MeshInstance3D" unique_id=53059265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
+mesh = SubResource("PlaneMesh_jsssl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=157751776]
+disable_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2070595673]
+transform = Transform3D(2.0005279, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0)
+shape = SubResource("BoxShape3D_jsssl")
+debug_fill = false
