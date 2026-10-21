@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dpfbkytjwr41u"]
+
+[ext_resource type="Texture2D" uid="uid://d1it24qydr7tw" path="res://greySkin.PNG" id="1_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xa11k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
+albedo_texture = ExtResource("1_4flbx")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xa11k"]
+material = SubResource("StandardMaterial3D_onrkg")
+
+[node name="player" type="CharacterBody3D" unique_id=815929019]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=449751393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9961364, 0)
+shape = SubResource("CapsuleShape3D_xa11k")
+debug_color = Color(1, 1, 1, 1)
+debug_fill = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1530097081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9969337, 0)
+mesh = SubResource("CapsuleMesh_xa11k")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1979315202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53028, -0.1008935)
+current = true
