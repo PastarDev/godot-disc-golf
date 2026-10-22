@@ -4,10 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://mrlaexqa04jm" path="res://map1.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bard14qbs6c1e" path="res://SampleDisc.tscn" id="3_h2yge"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_jsssl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsssl"]
+
 [node name="main" type="Node3D" unique_id=1902930073]
 
 [node name="player" parent="." unique_id=815929019 instance=ExtResource("1_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14208627, 0, 3.2746723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14208627, 0, 3.940337)
 
 [node name="ground" parent="." unique_id=53059265 instance=ExtResource("2_h2yge")]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 20, -0.09277654, 0, -13.831416)
@@ -15,5 +19,17 @@ transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 20, -0.09277654, 0, -13.831416)
 [node name="MainSun" type="DirectionalLight3D" parent="." unique_id=69877582]
 transform = Transform3D(1, 0, 0, 0, 0.5210079, 0.85355186, 0, -0.85355186, 0.5210079, 0, 37.1981, 9.467678)
 
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1355291258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.062057674, 0, 0)
+
+[node name="TestBox" type="MeshInstance3D" parent="RigidBody3D" unique_id=1804311398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5869919, 0.60817015, 1.4611945)
+mesh = SubResource("BoxMesh_jsssl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=700694690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5869919, 0.6081699, 1.4611945)
+shape = SubResource("BoxShape3D_jsssl")
+
 [node name="Disc" parent="." unique_id=1960621020 instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1321926, -0.747756)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.011148781, 1.7939732, 1.3485347)
+mass = 0.001
