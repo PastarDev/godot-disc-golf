@@ -4,7 +4,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jsssl"]
 
-[node name="RigidBody3D" type="RigidBody3D" unique_id=1960621020]
+[node name="Disc" type="RigidBody3D" unique_id=1960621020]
 
 [node name="DiscMesh" type="MeshInstance3D" parent="." unique_id=1181428907]
 transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)

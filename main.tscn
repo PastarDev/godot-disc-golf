@@ -15,5 +15,5 @@ transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 20, -0.09277654, 0, -13.831416)
 [node name="MainSun" type="DirectionalLight3D" parent="." unique_id=69877582]
 transform = Transform3D(1, 0, 0, 0, 0.5210079, 0.85355186, 0, -0.85355186, 0.5210079, 0, 37.1981, 9.467678)
 
-[node name="RigidBody3D" parent="." unique_id=1960621020 instance=ExtResource("3_h2yge")]
+[node name="Disc" parent="." unique_id=1960621020 instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1321926, -0.747756)
