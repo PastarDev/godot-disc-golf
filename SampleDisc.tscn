@@ -6,15 +6,17 @@
 vertex_color_use_as_albedo = true
 albedo_color = Color(1.8289685e-06, 0.5878264, 0.82721573, 1)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_jsssl"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yujqa"]
+height = 0.5
+radius = 2.63
 
 [node name="Disc" type="RigidBody3D" unique_id=1960621020]
 
 [node name="DiscMesh" type="MeshInstance3D" parent="." unique_id=1181428907]
-transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+transform = Transform3D(0.004, 0, 0, 0, 0.004, 0, 0, 0, 0.004, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_h2yge")
 mesh = ExtResource("1_fcu7y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1357547421]
-transform = Transform3D(5.2451406, 0, 0, 0, 0.25104973, 0, 0, 0, 5.2, 0, -0.15882528, 0)
-shape = SubResource("CylinderShape3D_jsssl")
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, -0.0124396235, 0)
+shape = SubResource("CylinderShape3D_yujqa")

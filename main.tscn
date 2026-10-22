@@ -31,5 +31,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5869919, 0.6081699, 1.46119
 shape = SubResource("BoxShape3D_jsssl")
 
 [node name="Disc" parent="." unique_id=1960621020 instance=ExtResource("3_h2yge")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.011148781, 1.7939732, 1.3485347)
-mass = 0.001
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6155308, 1.3979275)
