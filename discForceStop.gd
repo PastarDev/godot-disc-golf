@@ -9,7 +9,7 @@ func _ready() -> void:
 	constant_force = Vector3 (0, 0, 0)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("throw_disc"):
 		

@@ -18,7 +18,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.200166)
 transform = Transform3D(1, 0, 0, 0, 0.5210079, 0.85355186, 0, -0.85355186, 0.5210079, 0, 37.1981, 9.467678)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1355291258]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8088427, 1.5565076, -3.2615728)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.600765, 3.053134, -3.2615728)
+mass = 100.0
+gravity_scale = 0.0
 
 [node name="TestBox" type="MeshInstance3D" parent="RigidBody3D" unique_id=1804311398]
 mesh = SubResource("BoxMesh_jsssl")
