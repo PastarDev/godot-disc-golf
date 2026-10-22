@@ -18,7 +18,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var to_target = target_pos - global_position
 			
 		state.linear_velocity = to_target * follow_strength
-
+		
+	if Input.is_action_just_released("hold_disc"):
+		
+		constant_force = Vector3.ZERO
+		
 func _ready() -> void:
 	
 	gravity_scale = 0.0 
@@ -37,8 +41,8 @@ func _process(_delta: float) -> void:
 		constant_force = Vector3 (0, 30 + throw_power/8, -throw_power)
 		
 		await get_tree().create_timer(0.2).timeout
-		
-		constant_force = Vector3 (0, 0, 0)
+				
+		constant_force = Vector3 (100 * 1/linear_velocity.z, 0, 0)
 	
 	if global_position.y <= 0.1:
 		linear_velocity = Vector3.ZERO
