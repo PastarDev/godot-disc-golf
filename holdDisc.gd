@@ -2,7 +2,8 @@ extends RigidBody3D
 
 @export var camera: Camera3D
 @export var distance_in_front: float = 2.0
-@export var follow_strength: float = 10.0
+@export var follow_strength: float = 50.0
+@export var throw_power: float = 100
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if Input.is_action_pressed("hold_disc"):
@@ -18,7 +19,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 func _ready() -> void:
 	
-	#gravity_scale = 0.0 
+	gravity_scale = 0.0 
 	
 	global_position = Vector3 (0, 1.2, 3)
 	
@@ -31,7 +32,7 @@ func _process(_delta: float) -> void:
 		
 		gravity_scale = 1
 		
-		constant_force = Vector3 (0, 50, -100)
+		constant_force = Vector3 (0, throw_power/2, -throw_power)
 		
 		await get_tree().create_timer(0.2).timeout
 		
@@ -39,3 +40,5 @@ func _process(_delta: float) -> void:
 	
 	if global_position.y <= 0.1:
 		linear_velocity = Vector3.ZERO
+		
+		gravity_scale = 0.0
