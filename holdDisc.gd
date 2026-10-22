@@ -12,9 +12,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	
 		var cam_transform = camera.global_transform
 		var target_pos = cam_transform.origin + (-cam_transform.basis.z * distance_in_front)
-	
+		
+		target_pos.y -= 0.25
+
 		var to_target = target_pos - global_position
-	
+			
 		state.linear_velocity = to_target * follow_strength
 
 func _ready() -> void:
@@ -32,7 +34,7 @@ func _process(_delta: float) -> void:
 		
 		gravity_scale = 1
 		
-		constant_force = Vector3 (0, throw_power/2, -throw_power)
+		constant_force = Vector3 (0, 30 + throw_power/8, -throw_power)
 		
 		await get_tree().create_timer(0.2).timeout
 		
