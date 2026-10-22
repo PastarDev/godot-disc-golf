@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpfbkytjwr41u" path="res://player.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://mrlaexqa04jm" path="res://map1.tscn" id="2_h2yge"]
-[ext_resource type="Script" uid="uid://bor2n5gdhq4gl" path="res://discForceStop.gd" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://d12cvxoga437u" path="res://holdDisc.gd" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bard14qbs6c1e" path="res://SampleDisc.tscn" id="3_h2yge"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jsssl"]
@@ -28,9 +28,12 @@ mesh = SubResource("BoxMesh_jsssl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=700694690]
 shape = SubResource("BoxShape3D_jsssl")
 
-[node name="Disc" parent="." unique_id=1960621020 instance=ExtResource("3_h2yge")]
+[node name="Disc" parent="." unique_id=1960621020 node_paths=PackedStringArray("camera") instance=ExtResource("3_h2yge")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 1.2, 3)
 constant_force = Vector3(0, 7, -5)
 script = ExtResource("3_1bvp3")
+camera = NodePath("../player/Camera3D")
 
 [node name="MeshInstance3D" parent="." unique_id=1092041770 instance=ExtResource("2_h2yge")]
+
+[editable path="player"]
