@@ -1,6 +1,6 @@
 extends Camera3D
 
-var rotation_speed: float = 2.0
+var rotation_speed: float = 4.0
 @export var camera: Node3D
 
 func _process(delta: float) -> void:

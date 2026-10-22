@@ -2,6 +2,8 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jsssl"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jsssl"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_jsssl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jsssl"]
@@ -15,13 +17,15 @@ mesh = SubResource("PlaneMesh_jsssl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D" unique_id=504146510]
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=229194185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4647975, 0)
+physics_material_override = SubResource("PhysicsMaterial_jsssl")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D" unique_id=937464332]
-transform = Transform3D(0.56960374, 0, 0, 0, 0.5295501, 0, 0, 0, 0.6457443, 1.126764, 0.3984189, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.126764, 0.3984189, 0)
 mesh = SubResource("BoxMesh_jsssl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=459229941]
-transform = Transform3D(0.5755583, 0, 0, 0, 0.5056993, 0, 0, 0, 0.640735, 1.1276793, 0.41623187, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1276793, 0.41623187, 0)
 shape = SubResource("BoxShape3D_jsssl")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1784286758]
