@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 		gravity_scale = 1
 		
 		var direction = global_position - camera.global_position
-		apply_central_impulse(direction.normalized() * 25)
+		apply_central_impulse(direction.normalized() * (throw_power / 3))
 		
 		#old code:
 		#await get_tree().create_timer(0.2).timeout
