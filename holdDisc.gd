@@ -25,10 +25,14 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		
 		state.linear_velocity = to_target * follow_strength
 		
+		state.angular_velocity = -global_rotation * 5
+		
 
 func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("throw_disc"):
+		
+		constant_force = Vector3.ZERO
 		
 		is_holding = false
 		
