@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_onrkg")
 [node name="player" type="CharacterBody3D" unique_id=815929019]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=449751393]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9961364, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.9961364, 0)
 shape = SubResource("CapsuleShape3D_xa11k")
 debug_color = Color(1, 1, 1, 1)
 debug_fill = false

@@ -11,6 +11,7 @@ height = 0.5
 radius = 2.63
 
 [node name="Disc" type="RigidBody3D" unique_id=1960621020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007837772, 0, 0)
 
 [node name="DiscMesh" type="MeshInstance3D" parent="." unique_id=1181428907]
 transform = Transform3D(0.004, 0, 0, 0, 0.004, 0, 0, 0, 0.004, 0, 0, 0)

@@ -33,8 +33,9 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 1.2, 3)
 constant_force = Vector3(0, 7, -5)
 script = ExtResource("3_1bvp3")
 camera = NodePath("../player/Camera3D")
-distance_in_front = 1.0
+distance_in_front = 1.5
 
 [node name="MeshInstance3D" parent="." unique_id=1092041770 instance=ExtResource("2_h2yge")]
 
 [editable path="player"]
+[editable path="Disc"]
