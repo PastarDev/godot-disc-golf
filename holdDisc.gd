@@ -28,17 +28,18 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 func _process(_delta: float) -> void:
 	
-	if Input.is_action_pressed("throw_disc"):
+	if Input.is_action_just_pressed("throw_disc"):
 		
 		is_holding = false
 		
 		gravity_scale = 1
 		
-		constant_force = Vector3 (0, 30 + throw_power/8, -throw_power)
+		var direction = global_position - camera.global_position
+		apply_central_impulse(direction.normalized() * 25)
 		
-		await get_tree().create_timer(0.2).timeout
-		
-		constant_force = Vector3 (100 * 1/linear_velocity.z, 0, 0)
+		#old code:
+		#await get_tree().create_timer(0.2).timeout
+		#constant_force = Vector3 (100 * 1/linear_velocity.z, 0, 0)
 	
 	if global_position.y <= 0.01:
 		linear_velocity = Vector3.ZERO
@@ -46,7 +47,7 @@ func _process(_delta: float) -> void:
 		gravity_scale = 0.0
 	
 	if Input.is_action_just_pressed("hold_disc"):
-		
+		gravity_scale = 0
 		angular_velocity = Vector3.ZERO
 		constant_force = Vector3 (0, 0, 0)
 		is_holding = not is_holding
