@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mrlaexqa04jm" path="res://map1.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://d12cvxoga437u" path="res://holdDisc.gd" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bard14qbs6c1e" path="res://SampleDisc.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://dlvjsxwbv2efw" path="res://power_slider.gd" id="5_lquwl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jsssl"]
 
@@ -36,6 +37,19 @@ camera = NodePath("../player/Camera3D")
 distance_in_front = 1.5
 
 [node name="MeshInstance3D" parent="." unique_id=1092041770 instance=ExtResource("2_h2yge")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=698313311]
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer" unique_id=288858139 node_paths=PackedStringArray("disc")]
+offset_left = 30.0
+offset_top = 602.0
+offset_right = 1123.0
+offset_bottom = 665.0
+max_value = 80.0
+script = ExtResource("5_lquwl")
+disc = NodePath("../../Disc")
+
+[connection signal="value_changed" from="CanvasLayer/HSlider" to="CanvasLayer/HSlider" method="_on_value_changed"]
 
 [editable path="player"]
 [editable path="Disc"]
