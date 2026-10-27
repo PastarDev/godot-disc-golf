@@ -40,7 +40,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 func _process(_delta: float) -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
 	if Input.is_action_just_pressed("drag_disc"):
-		if -mouse_pos.y <= 10:
+		if mouse_pos.y > 622:
 			hold_disabled = true
 	
 	if Input.is_action_just_released("drag_disc"):
@@ -55,6 +55,7 @@ func _process(_delta: float) -> void:
 			apply_central_impulse(direction.normalized() * throw_power/3)
 		else:
 			hold_disabled = false
+			is_holding = true
 	
 	if global_position.y <= 0.01:
 		linear_velocity = Vector3.ZERO
