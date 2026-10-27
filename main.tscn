@@ -35,6 +35,7 @@ constant_force = Vector3(0, 7, -5)
 script = ExtResource("3_1bvp3")
 camera = NodePath("../player/Camera3D")
 distance_in_front = 1.5
+throw_power = 30.0
 
 [node name="MeshInstance3D" parent="." unique_id=1092041770 instance=ExtResource("2_h2yge")]
 
@@ -46,10 +47,16 @@ offset_top = 602.0
 offset_right = 1123.0
 offset_bottom = 665.0
 max_value = 80.0
+value = 30.0
 script = ExtResource("5_lquwl")
 disc = NodePath("../../Disc")
 
+[node name="drag_timer" type="Timer" parent="." unique_id=1012396586]
+wait_time = 0.05
+autostart = true
+
 [connection signal="value_changed" from="CanvasLayer/HSlider" to="CanvasLayer/HSlider" method="_on_value_changed"]
+[connection signal="timeout" from="drag_timer" to="Disc" method="_on_drag_timer_timeout"]
 
 [editable path="player"]
 [editable path="Disc"]
