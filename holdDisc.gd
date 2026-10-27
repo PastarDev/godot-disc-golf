@@ -17,7 +17,17 @@ func _ready() -> void:
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:	
 	if is_holding:
 		var cam_transform = camera.global_transform
-		var target_pos = cam_transform.origin + (-cam_transform.basis.z * distance_in_front)
+		var mouse_pos = get_viewport().get_mouse_position()
+		var distance_offset = distance_in_front
+		var drag_offset : Vector3
+		
+		if Input.is_action_pressed("drag_disc"):
+			cam_transform.origin.y += -mouse_pos.y / 900 + 0.4
+			distance_offset += -mouse_pos.y / 1500
+			drag_offset = -cam_transform.basis.x*0.65 + (cam_transform.basis.x * mouse_pos.x / 900)
+			
+		
+		var target_pos = cam_transform.origin + (-cam_transform.basis.z * distance_offset) + drag_offset
 		
 		target_pos.y -= 0.25
 
@@ -26,7 +36,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		state.angular_velocity = -global_rotation * 5
 		
 		state.linear_velocity = to_target * follow_strength
-
 		
 
 func _process(_delta: float) -> void:
