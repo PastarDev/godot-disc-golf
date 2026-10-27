@@ -8,6 +8,12 @@ var delayed_drag = []
 var is_holding: bool = true
 var hold_disabled: bool = false
 
+#using flight numbers of a tbird for testing
+@export var speed : float = 7.0
+@export var glide : float = 5.0
+@export var turn : float = 0.0
+@export var fade : float = 2.0
+
 func _ready() -> void:
 	constant_force = Vector3 (0, 0, 0)
 
@@ -26,7 +32,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var target_pos = cam_transform.origin + (-cam_transform.basis.z * distance_offset) + drag_offset
 		
 		target_pos.y -= 0.25
-
+		
 		var to_target = target_pos - global_position
 		
 		state.angular_velocity = -global_rotation * 5
@@ -48,16 +54,17 @@ func _process(_delta: float) -> void:
 		if not hold_disabled:
 			var cam_transform = camera.global_transform
 			is_holding = false
-			var drag_distance = delayed_drag[0] - delayed_drag[4]
+			var drag_distance = abs(delayed_drag[0] - delayed_drag[4])
 			gravity_scale = 1
 			var direction_offset = -cam_transform.basis.x*0.65 + (cam_transform.basis.x * mouse_pos.x / 900)
 			var direction = -camera.global_transform.basis.z + camera.global_transform.basis.y / 30 + direction_offset
 			direction.y += 0.2
-			linear_velocity *= 0.5
-			if -drag_distance.y / 1000 < 0.1:
-				apply_central_impulse(direction.normalized() * throw_power/3 * (-drag_distance.y / 1000))
-			else:
-				apply_central_impulse(direction.normalized() * throw_power/3 * ((-drag_distance.y / 1000) + 1) / 2)
+			linear_velocity *= 0.2
+			global_basis = camera.global_basis
+			await get_tree().create_timer(0.01).timeout
+			apply_central_impulse(direction.normalized() * throw_power/3 * (clamp(drag_distance.y / 100, 0.2, 1.5)))
+			
+			#global_rotation = camera.global_rotation
 		else:
 			hold_disabled = false
 			is_holding = true
@@ -68,7 +75,7 @@ func _process(_delta: float) -> void:
 		gravity_scale = 0.0
 	
 	if Input.is_action_just_pressed("hold_disc"):
-		constant_force = Vector3 (0, 0, 0)
+		#constant_force = Vector3 (0, 0, 0)
 		is_holding = not is_holding
 		hold_disabled = false
 	
@@ -80,3 +87,8 @@ func _on_drag_timer_timeout() -> void:
 	delayed_drag.push_front(mouse_pos)
 	while len(delayed_drag) >= 6:
 		delayed_drag.remove_at(-1)
+	if not is_holding:
+		linear_velocity.x *= 0.97
+		linear_velocity.z *= 0.97
+		constant_force.y = -(linear_velocity.x + linear_velocity.z) / (120 - glide * 5)
+		print(-(linear_velocity.x + linear_velocity.z) / 100)
