@@ -65,3 +65,4 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("hold_disc"):
 		constant_force = Vector3 (0, 0, 0)
 		is_holding = not is_holding
+		hold_disabled = false
