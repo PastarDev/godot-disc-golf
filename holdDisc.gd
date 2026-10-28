@@ -94,9 +94,10 @@ func _on_drag_timer_timeout() -> void:
 		flight_time += 1
 		linear_velocity.x *= 0.99
 		linear_velocity.z *= 0.99
-		constant_force.y = -(linear_velocity.x + linear_velocity.z) / (100 - glide * 8)
+		constant_force.y = -(linear_velocity.x + linear_velocity.z) * 2 / (100 - glide * 8)
+		var velocityxz = abs(linear_velocity.x + linear_velocity.z)
 		if global_rotation_degrees.z < 40 and global_rotation_degrees.z > -40 and global_position.y > 0.5:
-			rotation_degrees.z += 10 / clamp(abs(linear_velocity.x + linear_velocity.z), 2, 12 - speed) + flight_time/ 10
-			rotation_degrees.z -= abs(linear_velocity.x + linear_velocity.z) / clamp(speed, 5, 15)
-			var fade = -rotation_degrees.z / 40
-			linear_velocity += global_transform.basis.x * fade
+			rotation_degrees.z += 10 / clamp(velocityxz, 2, 12) * fade/5 + 0.5 + (flight_time / 100) + speed/5
+			rotation_degrees.z -= 1.2 * velocityxz / clamp(speed, 5, 15) * (turn/-5 + 0.4)
+		var fade_direction = -clamp(rotation_degrees.z, -50, 50) / 40
+		linear_velocity += global_transform.basis.x * fade_direction * clamp(velocityxz / 10, 0.6, 30)
