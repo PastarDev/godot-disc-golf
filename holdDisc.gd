@@ -7,6 +7,7 @@ extends RigidBody3D
 var delayed_drag = []
 var is_holding: bool = true
 var hold_disabled: bool = false
+var flight_time : int = 0
 
 #using flight numbers of a tbird for testing
 @export var speed : float = 7.0
@@ -33,6 +34,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		
 		target_pos.y -= 0.25
 		
+		flight_time = 0
 		var to_target = target_pos - global_position
 		
 		state.angular_velocity = -global_rotation * 5
@@ -56,6 +58,7 @@ func _process(_delta: float) -> void:
 			is_holding = false
 			var drag_distance = abs(delayed_drag[0] - delayed_drag[4])
 			gravity_scale = 1
+			flight_time = 1
 			var direction_offset = -cam_transform.basis.x*0.65 + (cam_transform.basis.x * mouse_pos.x / 900)
 			var direction = -camera.global_transform.basis.z + camera.global_transform.basis.y / 30 + direction_offset
 			direction.y += 0.2
@@ -87,8 +90,13 @@ func _on_drag_timer_timeout() -> void:
 	delayed_drag.push_front(mouse_pos)
 	while len(delayed_drag) >= 6:
 		delayed_drag.remove_at(-1)
-	if not is_holding:
-		linear_velocity.x *= 0.97
-		linear_velocity.z *= 0.97
-		constant_force.y = -(linear_velocity.x + linear_velocity.z) / (120 - glide * 5)
-		print(-(linear_velocity.x + linear_velocity.z) / 100)
+	if not is_holding and flight_time >= 1:
+		flight_time += 1
+		linear_velocity.x *= 0.99
+		linear_velocity.z *= 0.99
+		constant_force.y = -(linear_velocity.x + linear_velocity.z) / (100 - glide * 8)
+		if global_rotation_degrees.z < 40 and global_rotation_degrees.z > -40 and global_position.y > 0.5:
+			rotation_degrees.z += 10 / clamp(abs(linear_velocity.x + linear_velocity.z), 2, 12 - speed) + flight_time/ 10
+			rotation_degrees.z -= abs(linear_velocity.x + linear_velocity.z) / clamp(speed, 5, 15)
+			var fade = -rotation_degrees.z / 40
+			linear_velocity += global_transform.basis.x * fade
